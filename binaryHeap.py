@@ -108,7 +108,6 @@ class BinaryHeap:
         self.heap_list.pop()
         self.currnt_size -= 1
         self.heap_down(1)
-#        TODO: raise StopIteration  when the list is exhausted
         return min_val
 
     def build_heap(self, elems):
