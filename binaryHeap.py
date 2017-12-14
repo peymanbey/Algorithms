@@ -30,6 +30,18 @@ class BinaryHeap:
         return left, right and parentindex
         """
         return 2 * ind, 2 * ind + 1, ind // 2
+    
+    @staticmethod
+    def _swap_elems(heaplist, indA, indB):
+        """
+        swap element indA with element indB in array heaplist
+        -------
+        heaplist: list
+        indA: int
+        indB: int
+        """
+        heaplist[indA], heaplist[indB] = heaplist[indB], heaplist[indA]
+        return heaplist
 
     def heap_up(self, ind):
         """
@@ -43,9 +55,7 @@ class BinaryHeap:
         while ind // 2 > 0:
             _, _, parent = self._left_right_parent(ind)
             if self.heap_list[ind] < self.heap_list[parent]:
-                temp = self.heap_list[parent]
-                self.heap_list[parent] = self.heap_list[ind]
-                self.heap_list[ind] = temp
+                self._swap_elems(self.heap_list, parent, ind)
             ind = parent
 
     def insert(self, elem):
@@ -63,7 +73,7 @@ class BinaryHeap:
 
     def heap_down(self, ind):
         """
-        Percolate down and element to preserve heap order
+        Percolate down an element to preserve heap order
 
         Input
         -------
@@ -72,9 +82,7 @@ class BinaryHeap:
         while (ind * 2) <= self.currnt_size:
             minimum_child = self.min_child(ind)
             if self.heap_list[ind] > self.heap_list[minimum_child]:
-                temp = self.heap_list[minimum_child]
-                self.heap_list[minimum_child] = self.heap_list[ind]
-                self.heap_list[ind] = temp
+                self._swap_elems(self.heap_list, minimum_child, ind)
             ind = minimum_child
 
 
@@ -137,7 +145,7 @@ def generate_num(n=10):
 
 heap = BinaryHeap()
 
-for num in generate_num(n=10**2):
+for num in generate_num(n=10**3):
     heap.insert(num)
 #    print(heap.heap_list)
 #print(heap.heap_list)
