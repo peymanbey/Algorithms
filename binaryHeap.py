@@ -43,7 +43,7 @@ class BinaryHeap:
         heaplist[indA], heaplist[indB] = heaplist[indB], heaplist[indA]
         return heaplist
 
-    def heap_up(self, ind):
+    def _heap_up(self, ind):
         """
         Percolate and element up to its position
 
@@ -58,20 +58,7 @@ class BinaryHeap:
                 self._swap_elems(self.heap_list, parent, ind)
             ind = parent
 
-    def insert(self, elem):
-        """
-        Insert a new element to heap
-
-        Input
-        -------
-        elem: obj,input element, arothmatic comparosion should be applicable
-        -------
-        """
-        self.heap_list.append(elem)
-        self.currnt_size += 1
-        self.heap_up(self.currnt_size)
-
-    def heap_down(self, ind):
+    def _heap_down(self, ind):
         """
         Percolate down an element to preserve heap order
 
@@ -80,13 +67,13 @@ class BinaryHeap:
         ind: int, index of the element to percolate down
         """
         while (ind * 2) <= self.currnt_size:
-            minimum_child = self.min_child(ind)
+            minimum_child = self._min_child(ind)
             if self.heap_list[ind] > self.heap_list[minimum_child]:
                 self._swap_elems(self.heap_list, minimum_child, ind)
             ind = minimum_child
 
 
-    def min_child(self, ind):
+    def _min_child(self, ind):
         """
         Return the index of the child with the minimum value
 
@@ -106,6 +93,19 @@ class BinaryHeap:
 
         return min_child_ind
 
+    def insert(self, elem):
+        """
+        Insert a new element to heap
+
+        Input
+        -------
+        elem: obj,input element, arothmatic comparosion should be applicable
+        -------
+        """
+        self.heap_list.append(elem)
+        self.currnt_size += 1
+        self._heap_up(self.currnt_size)
+
     def pop_min(self):
         """
         Pop the minimum value of the heap
@@ -115,7 +115,7 @@ class BinaryHeap:
         self.heap_list[1] = self.heap_list[self.currnt_size]
         self.heap_list.pop()
         self.currnt_size -= 1
-        self.heap_down(1)
+        self._heap_down(1)
         return min_val
 
     def build_heap(self, elems):
@@ -125,12 +125,12 @@ class BinaryHeap:
         -------
         elems: list of values to fill the heap with
         """
-        steps = len(elems) // 2
+        least_parent = len(elems) // 2
         self.currnt_size = len(elems)
         self.heap_list = [0] + elems[:]
-        while steps > 0:
-            self.heap_down(steps)
-            steps = steps - 1
+        while least_parent > 0:
+            self._heap_down(least_parent)
+            least_parent -= 1
 
 
 #####################
