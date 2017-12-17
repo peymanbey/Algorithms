@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-peymanbey@github
+author: peymanbey@github
 
 Hackerrank Snake Ladder game
 """
@@ -12,7 +12,7 @@ def read_games():
     """
     game_list = []
     die_prob_list = []
-    with open("sampleInput.txt") as f:
+    with open("snake_ladder_sample.txt") as f:
         N = int(f.readline())
         for _ in range(N):
             die_prob_list.append(list(map(float, f.readline().split(","))))
