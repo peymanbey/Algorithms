@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Dec 12 23:57:37 2017
-
 @author: peymanbey@github
 
 Binary heap
