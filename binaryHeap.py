@@ -141,31 +141,32 @@ class BinaryHeap:
 
 #####################
 #test
-import random
-
-def generate_num(n=10):
-    cntr = 0
-    while cntr < n:
-        yield random.randint(1, 10**2)
-        cntr += 1
-
-heap = BinaryHeap()
-
-for num in generate_num(n=10**1):
-    heap.insert(num)
-
-print(heap.heap_list)
-print([heap.pop_min() for _ in range(10)], "\n")
-
-
-heap1 = BinaryHeap()
-heap2 = BinaryHeap()
-
-sample = [num for num in generate_num(10)]
-print(sample, "\n")
-heap1.build_heap_down(sample)
-heap2.build_heap_up(sample)
-print(heap1.heap_list)
-print(heap2.heap_list)
-print([heap1.pop_min() for _ in range(10)])
-print([heap2.pop_min() for _ in range(10)])
+if __name__=="__main__":
+    import random
+    
+    def generate_num(n=10):
+        cntr = 0
+        while cntr < n:
+            yield random.randint(1, 10**2)
+            cntr += 1
+    
+    heap = BinaryHeap()
+    
+    for num in generate_num(n=10**1):
+        heap.insert(num)
+    
+    print(heap.heap_list)
+    print([heap.pop_min() for _ in range(10)], "\n")
+    
+    
+    heap1 = BinaryHeap()
+    heap2 = BinaryHeap()
+    
+    sample = [num for num in generate_num(10)]
+    print(sample, "\n")
+    heap1.build_heap_down(sample)
+    heap2.build_heap_up(sample)
+    print(heap1.heap_list)
+    print(heap2.heap_list)
+    print([heap1.pop_min() for _ in range(10)])
+    print([heap2.pop_min() for _ in range(10)])
